@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="colorApp">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Demo</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="lib/jquery.minicolors.css">
+<!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- Bootstrap 3 -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- AngularJS -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+<script type='text/javascript' src='lib/jquery.minicolors.js'></script>
+<script src="lib/angular-minicolors.js" type='text/javascript'></script>
+<script type='text/javascript' src="lib/app.js"></script>
+<style type="text/css">
+.minicolors-theme-default .minicolors-input{
+  background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 40px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+    width: 228%;
+}
+.form-control{
+
+  width:173%;
+}
+.minicolors-theme-default .minicolors-swatch {
+    border-radius: 3px;
+    height: 28px;
+    left: 3px;
+    top: 3px;
+    width: 28px;
+}
+</style>
+</head>
+<body>
+
+  <div ng-app class="container">
+    <div ng-controller="colorCtrl">
+    <h3 class="center">Color App</h3>
+    <div class="well">
+      <div class="row">
+      <div class="col-lg-4 col-sm-4 col-12"></div>
+      <div class="col-lg-4 col-sm-4 col-12">
+      <h4 ng-if="error">{{error}}</h4>
+      <table>
+        <tr>
+        <td>
+        <div class="form-group">
+          <label for="Name">Name</label>
+         <input class="form-control" type="text" placeholder="Enter Title" ng-model="item.title" /></td>
+       </div>
+        </td>
+        </tr>
+        <tr>
+         <td>
+        <div class="form-group">
+          <label for="Color">Color</label>
+          <input minicolors id="hue-demo" class="form-control" type="text"  ng-model="item.color">
+            <input type="hidden" ng-model="item.id" />
+            </td>
+       </div>
+        </td>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+           <span ng-show="addButton"><input class="btn btn-default" type="Button" value="Add" ng-click="addItem(item)" />
+           </span>
+           <span ng-show="editButton"><input  class="btn btn-default" type="Button" value="Update" ng-click="updateItem(item)" /></span>
+          </td>
+        </tr>
+      </table>
+      </div>
+      <div class="col-lg-4 col-sm-4 col-12"></div>
+        </div>
+    </div>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <td>Title</td>
+            <td>Color</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items" style="background:{{item.color}}">
+            <td>{{item.title}}</td>
+            <td>{{item.color}}</td>
+            <td>
+              <input type="button" value="Remove"  class="btn btn-default"  ng-click="removeItem($index)" />
+              <input type="button" value="Edit" class="btn btn-default"  ng-click="editItem($index)" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
